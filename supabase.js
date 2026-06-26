@@ -71,3 +71,25 @@ async function cargarReparaciones() {
 
 }
 
+async function obtenerProximoNumeroOT() {
+
+    const { data, error } = await clienteSupabase
+        .from("reparaciones")
+        .select("numero")
+        .order("id", { ascending: false })
+        .limit(1);
+
+    if (error) {
+        console.error(error);
+        return "OT-000001";
+    }
+
+    if (data.length === 0) {
+        return "OT-000001";
+    }
+
+    let ultimo = parseInt(data[0].numero.replace("OT-", ""));
+
+    return "OT-" + String(ultimo + 1).padStart(6, "0");
+}
+
