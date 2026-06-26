@@ -95,7 +95,10 @@ if(!clienteExistente){
 
     valorTransporte: 0
 };
-clienteSupabase
+
+
+
+    clienteSupabase
 .from("reparaciones")
 .insert([{
 
@@ -113,31 +116,23 @@ clienteSupabase
     ubicacion: orden.ubicacion,
 
     estado: orden.estado,
-
     tecnico: orden.tecnico,
 
     valor_reparacion: orden.valorReparacion,
-
     gastos: orden.gastos,
-
     transporte: orden.transporte,
-
     valor_transporte: orden.valorTransporte
 
 }])
-.then(({error})=>{
+.select()
+.then(({ data, error }) => {
 
-    if(error){
-
-        console.error(error);
-
-    }else{
-
-        console.log("Orden guardada en Supabase");
-
-    }
+    console.log("INSERT DATA:", data);
+    console.log("INSERT ERROR:", error);
 
 });
+    
+    
     reparaciones.push(orden);
 
     guardarDatos();
