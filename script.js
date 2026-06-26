@@ -27,9 +27,9 @@ function mostrarSeccion(id){
         actualizarTablaReparaciones();
     }
 }
-function actualizarNumeroOT(){
+async function actualizarNumeroOT(){
 
-    let numero = "OT-" + String(contadorOT).padStart(6,"0");
+    let numero = await obtenerProximoNumeroOT();
 
     document.getElementById("numeroOrden").innerHTML =
         "<strong>N° Orden:</strong> " + numero;
