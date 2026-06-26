@@ -95,7 +95,49 @@ if(!clienteExistente){
 
     valorTransporte: 0
 };
+clienteSupabase
+.from("reparaciones")
+.insert([{
 
+    numero: orden.numero,
+    cliente: orden.cliente,
+    telefono: orden.telefono,
+    direccion: orden.direccion,
+    producto: orden.producto,
+    marca: orden.marca,
+    modelo: orden.modelo,
+    serie: orden.serie,
+    falla: orden.falla,
+    observaciones: orden.observaciones,
+    accesorios: orden.accesorios,
+    ubicacion: orden.ubicacion,
+
+    estado: orden.estado,
+
+    tecnico: orden.tecnico,
+
+    valor_reparacion: orden.valorReparacion,
+
+    gastos: orden.gastos,
+
+    transporte: orden.transporte,
+
+    valor_transporte: orden.valorTransporte
+
+}])
+.then(({error})=>{
+
+    if(error){
+
+        console.error(error);
+
+    }else{
+
+        console.log("Orden guardada en Supabase");
+
+    }
+
+});
     reparaciones.push(orden);
 
     guardarDatos();
