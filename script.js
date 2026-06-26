@@ -430,41 +430,90 @@ function guardarDatos(){
     );
 
 }
-function cargarDatos(){
+async function cargarDatos(){
 
-    let datosReparaciones =
-        localStorage.getItem("reparaciones");
+    // ==========================
+    // REPARACIONES
+    // ==========================
 
-    if(datosReparaciones){
+    const {
+        data: datosReparaciones,
+        error: errorReparaciones
+    } = await clienteSupabase
+        .from("reparaciones")
+        .select("*")
+        .order("id", { ascending: true });
 
-        reparaciones =
-            JSON.parse(datosReparaciones);
+    if(errorReparaciones){
 
-          reparaciones.forEach(function(orden){
+        console.error(errorReparaciones);
 
-    if(!orden.fecha){
+    }else{
 
-        orden.fecha = new Date().toISOString();
+        reparaciones = datosReparaciones.map(function(r){
 
-    }
+            return{
 
-});
+                numero: r.numero,
+                cliente: r.cliente,
+                telefono: r.telefono,
+                direccion: r.direccion,
+                producto: r.producto,
+                marca: r.marca,
+                modelo: r.modelo,
+                serie: r.serie,
+                falla: r.falla,
+                observaciones: r.observaciones,
+                accesorios: r.accesorios,
+                ubicacion: r.ubicacion,
+
+                estado: r.estado,
+                tecnico: r.tecnico,
+
+                valorReparacion: Number(r.valor_reparacion),
+                gastos: Number(r.gastos),
+
+                transporte: r.transporte,
+                valorTransporte: Number(r.valor_transporte),
+
+                fecha: r.fecha_creacion
+
+            };
+
+        });
+
         actualizarTablaReparaciones();
 
         contadorOT = reparaciones.length + 1;
+
     }
 
-    let datosClientes =
-        localStorage.getItem("clientes");
+    // ==========================
+    // CLIENTES
+    // ==========================
 
-    if(datosClientes){
+    const {
+        data: datosClientes,
+        error: errorClientes
+    } = await clienteSupabase
+        .from("clientes")
+        .select("*")
+        .order("id", { ascending: true });
 
-        clientes = JSON.parse(datosClientes);
+    if(errorClientes){
+
+        console.error(errorClientes);
+
+    }else{
+
+        clientes = datosClientes;
 
         contadorCliente =
             clientes.length + 1;
+
+        actualizarTablaClientes();
+
     }
-    actualizarTablaClientes();
 
 }
 function cambiarEstado(numeroOrden,nuevoEstado){
