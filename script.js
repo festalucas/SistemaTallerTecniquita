@@ -34,7 +34,7 @@ function actualizarNumeroOT(){
     document.getElementById("numeroOrden").innerHTML =
         "<strong>N° Orden:</strong> " + numero;
 }
-function generarOrden(){
+async  function generarOrden(){
 
     let numero = "OT-" + String(contadorOT).padStart(6,"0");
 
@@ -98,7 +98,7 @@ if(!clienteExistente){
 
 
 
-    clienteSupabase
+const { data, error } = await clienteSupabase
 .from("reparaciones")
 .insert([{
 
@@ -124,13 +124,12 @@ if(!clienteExistente){
     valor_transporte: orden.valorTransporte
 
 }])
-.select()
-.then(({ data, error }) => {
+.select();
 
-    console.log("INSERT DATA:", data);
-    console.log("INSERT ERROR:", error);
+console.log("INSERT DATA:", data);
+console.log("INSERT ERROR:", error);
 
-});
+await cargarReparaciones();
     
     
     reparaciones.push(orden);
