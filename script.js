@@ -1,4 +1,4 @@
-let contadorOT = 1;
+let proximoNumeroOT = "";
 let contadorCliente = 1;
 let reparaciones = [];
 let clientes = [];
@@ -31,12 +31,14 @@ async function actualizarNumeroOT(){
 
     let numero = await obtenerProximoNumeroOT();
 
+    proximoNumeroOT = numero;
+
     document.getElementById("numeroOrden").innerHTML =
         "<strong>N° Orden:</strong> " + numero;
 }
 async  function generarOrden(){
 
-    let numero = "OT-" + String(contadorOT).padStart(6,"0");
+   let numero = proximoNumeroOT;
 
     let cliente = document.getElementById("cliente").value;
     let telefono = document.getElementById("telefono").value;
