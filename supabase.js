@@ -93,3 +93,46 @@ async function obtenerProximoNumeroOT() {
     return "OT-" + String(ultimo + 1).padStart(6, "0");
 }
 
+async function guardarCliente(cliente){
+
+    const { data, error } = await clienteSupabase
+        .from("clientes")
+        .insert([{
+
+            nombre: cliente.nombre,
+            telefono: cliente.telefono,
+            direccion: cliente.direccion
+
+        }])
+        .select();
+
+    console.log("CLIENTE DATA:", data);
+    console.log("CLIENTE ERROR:", error);
+
+}
+
+async function cargarClientes(){
+
+    const { data, error } = await clienteSupabase
+        .from("clientes")
+        .select("*")
+        .order("nombre");
+
+    if(error){
+
+        console.error(error);
+        return;
+
+    }
+
+    clientes = data.map(c => ({
+
+        id: c.id,
+        nombre: c.nombre,
+        telefono: c.telefono,
+        direccion: c.direccion
+
+    }));
+
+}
+
