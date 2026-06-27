@@ -63,7 +63,8 @@ if(!clienteExistente){
 
     };
 
-    clientes.push(clienteExistente);
+    await guardarCliente(clienteExistente);
+    await cargarClientes();
 
     contadorCliente++;
 
