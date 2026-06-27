@@ -56,7 +56,6 @@ if(!clienteExistente){
 
     clienteExistente = {
 
-        id: contadorCliente,
         nombre: cliente,
         telefono: telefono,
         direccion: direccion
@@ -64,9 +63,10 @@ if(!clienteExistente){
     };
 
     await guardarCliente(clienteExistente);
+
     await cargarClientes();
 
-    contadorCliente++;
+}
 
 }
     let orden = {
