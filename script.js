@@ -62,7 +62,7 @@ if(!clienteExistente){
 
     };
 
-    await guardarCliente(clienteExistente);
+    await guardarClienteSupabase(clienteExistente);
 
     await cargarClientes();
 
