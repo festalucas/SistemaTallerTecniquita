@@ -93,7 +93,7 @@ async function obtenerProximoNumeroOT() {
     return "OT-" + String(ultimo + 1).padStart(6, "0");
 }
 
-async function guardarCliente(cliente){
+async function guardarClienteSupabase(cliente){
 
     const { data, error } = await clienteSupabase
         .from("clientes")
