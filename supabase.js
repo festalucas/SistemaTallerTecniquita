@@ -21,6 +21,32 @@ async function probarConexion(){
     console.log("ERROR SUPABASE:", error);
 }
 
+async function actualizarReparacionSupabase(orden){
+
+    const { data, error } = await clienteSupabase
+        .from("reparaciones")
+        .update({
+
+            estado: orden.estado,
+            tecnico: orden.tecnico,
+
+            valor_reparacion: orden.valorReparacion,
+            gastos: orden.gastos,
+
+            transporte: orden.transporte,
+            valor_transporte: orden.valorTransporte,
+
+            fecha_entrega: orden.fechaEntrega
+
+        })
+        .eq("numero", orden.numero)
+        .select();
+
+    console.log("UPDATE REPARACION:", data);
+    console.log("UPDATE ERROR:", error);
+
+}
+
 
 async function cargarReparaciones() {
 
