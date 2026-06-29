@@ -621,28 +621,7 @@ function infoCliente(id){
     let historial = reparaciones.filter(
         r => r.cliente.toLowerCase() === cliente.nombre.toLowerCase()
     );
-    async function guardarCliente(id){
-
-    let cliente = clientes.find(c => c.id == id);
-
-    cliente.nombre =
-        document.getElementById("editarNombre").value;
-
-    cliente.telefono =
-        document.getElementById("editarTelefono").value;
-
-    cliente.direccion =
-        document.getElementById("editarDireccion").value;
-
-    await actualizarClienteSupabase(cliente);
-
-    await cargarClientes();
-
-    actualizarTablaClientes();
-
-    alert("Cliente actualizado correctamente.");
-
-}
+   
 
     let historialHTML = "";
 
