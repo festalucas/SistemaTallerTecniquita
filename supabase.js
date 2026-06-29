@@ -126,6 +126,38 @@ async function actualizarClienteSupabase(cliente){
 
     console.log("UPDATE CLIENTE:", data);
     console.log("UPDATE ERROR:", error);
+    async function guardarCliente(id){
+
+    console.log("Entró a guardarCliente");
+
+    let cliente =
+        clientes.find(c => c.id == id);
+
+    console.log("Cliente encontrado:", cliente);
+
+    cliente.nombre =
+        document.getElementById("editarNombre").value;
+
+    cliente.telefono =
+        document.getElementById("editarTelefono").value;
+
+    cliente.direccion =
+        document.getElementById("editarDireccion").value;
+
+    console.log("Cliente modificado:", cliente);
+
+    await actualizarClienteSupabase(cliente);
+
+    console.log("Terminó el UPDATE");
+
+    guardarDatos();
+
+    await cargarDatos();
+
+    actualizarTablaClientes();
+
+    alert("Cliente actualizado correctamente.");
+}
 
 }
 
