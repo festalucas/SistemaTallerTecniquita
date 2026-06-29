@@ -110,6 +110,24 @@ async function guardarClienteSupabase(cliente){
     console.log("CLIENTE ERROR:", error);
 
 }
+async function actualizarClienteSupabase(cliente){
+
+    const { data, error } = await clienteSupabase
+        .from("clientes")
+        .update({
+
+            nombre: cliente.nombre,
+            telefono: cliente.telefono,
+            direccion: cliente.direccion
+
+        })
+        .eq("id", cliente.id)
+        .select();
+
+    console.log("UPDATE CLIENTE:", data);
+    console.log("UPDATE ERROR:", error);
+
+}
 
 async function cargarClientes(){
 
