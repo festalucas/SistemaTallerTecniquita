@@ -841,7 +841,7 @@ function mostrarTransporte(){
         check.checked ? "block" : "none";
 
 }
-function guardarDetalle(numeroOrden){
+ async function guardarDetalle(numeroOrden){
 
     let orden =
         reparaciones.find(
