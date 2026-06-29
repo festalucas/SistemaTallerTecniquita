@@ -902,6 +902,10 @@ document.getElementById(
     "guardadoOk"
 ).style.display = "inline";
 
+await actualizarReparacionSupabase(orden);
+
+await cargarDatos();
+
 setTimeout(function(){
 
     document.getElementById(
