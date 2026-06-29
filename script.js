@@ -705,10 +705,15 @@ function infoCliente(id){
 
     mostrarSeccion("detalleCliente");
 }
-function guardarCliente(id){
+async function guardarCliente(id){
 
     let cliente =
         clientes.find(c => c.id == id);
+
+    if(!cliente){
+        alert("Cliente no encontrado");
+        return;
+    }
 
     cliente.nombre =
         document.getElementById(
@@ -725,9 +730,15 @@ function guardarCliente(id){
             "editarDireccion"
         ).value;
 
+    await actualizarClienteSupabase(cliente);
+
     guardarDatos();
 
+    await cargarDatos();
+
     actualizarTablaClientes();
+
+    alert("Cliente actualizado correctamente.");
 
 }
 cargarDatos();
