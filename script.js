@@ -894,18 +894,25 @@ function mostrarTransporte(){
             )?.value || 0
         );
 
-   guardarDatos();
+  
 
-actualizarTablaReparaciones();
-     verDetalle(numeroOrden);
+    await actualizarReparacionSupabase(orden);
+     
+    guardarDatos();
+     
+    await cargarDatos();
+     
+    actualizarTablaReparaciones();
+     
+    verDetalle(numeroOrden);
 
-document.getElementById(
-    "guardadoOk"
-).style.display = "inline";
+    
+    document.getElementById(
+        "guardadoOk"
+    ).style.display = "inline";
 
-await actualizarReparacionSupabase(orden);
 
-await cargarDatos();
+
 
 setTimeout(function(){
 
