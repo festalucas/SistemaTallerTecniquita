@@ -897,6 +897,7 @@ function mostrarTransporte(){
    guardarDatos();
 
 actualizarTablaReparaciones();
+     verDetalle(numeroOrden);
 
 document.getElementById(
     "guardadoOk"
