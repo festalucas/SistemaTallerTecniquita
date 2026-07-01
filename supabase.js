@@ -210,5 +210,60 @@ async function cargarClientes(){
 
     }));
 
+    async function login(){
+
+    const email =
+        document.getElementById("loginEmail").value;
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+    const { data, error } =
+        await clienteSupabase.auth.signInWithPassword({
+
+            email: email,
+            password: password
+
+        });
+
+    if(error){
+
+        document.getElementById("errorLogin").innerText =
+            error.message;
+
+        return;
+    }
+
+    document.getElementById("pantallaLogin").style.display = "none";
+
+    await cargarDatos();
+
+    mostrarSeccion("ingreso");
+
+}
+    async function verificarSesion(){
+
+    const { data } =
+        await clienteSupabase.auth.getSession();
+
+    if(data.session){
+
+        document.getElementById("pantallaLogin").style.display = "none";
+
+        await cargarDatos();
+
+        mostrarSeccion("ingreso");
+
+    }
+
+}
+    async function cerrarSesion(){
+
+    await clienteSupabase.auth.signOut();
+
+    location.reload();
+
+}
+
 }
 
