@@ -41,8 +41,9 @@ async function login(){
     document.getElementById("pantallaLogin").style.display =
         "none";
 
-    await cargarDatos();
+  await cargarPerfil();
 
+  await cargarDatos();
     mostrarSeccion("ingreso");
 
 }
@@ -52,16 +53,48 @@ async function verificarSesion(){
     const { data } =
         await clienteSupabase.auth.getSession();
 
-    if(data.session){
+  if(data.session){
 
-        document.getElementById("pantallaLogin").style.display =
-            "none";
+    document.getElementById("pantallaLogin").style.display =
+        "none";
 
-        await cargarDatos();
+    await cargarPerfil();
 
-        mostrarSeccion("ingreso");
+    await cargarDatos();
+
+    mostrarSeccion("ingreso");
+
+}
+
+}
+async function cargarPerfil(){
+
+    const { data: usuario } =
+        await clienteSupabase.auth.getUser();
+
+    if(!usuario.user){
+
+        return;
 
     }
+
+    const { data, error } =
+        await clienteSupabase
+        .from("perfiles")
+        .select("*")
+        .eq("id", usuario.user.id)
+        .single();
+
+    if(error){
+
+        console.error(error);
+        return;
+
+    }
+
+    usuarioActual = data;
+
+    console.log("USUARIO:", usuarioActual);
 
 }
 
