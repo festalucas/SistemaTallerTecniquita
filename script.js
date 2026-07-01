@@ -741,8 +741,7 @@ async function guardarCliente(id){
     alert("Cliente actualizado correctamente.");
 
 }
-cargarDatos();
-mostrarSeccion("ingreso");
+verificarSesion();
 function exportarDatos(){
 
     let backup = {
