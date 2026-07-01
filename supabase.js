@@ -96,6 +96,11 @@ async function cargarPerfil(){
 
     console.log("USUARIO:", usuarioActual);
 
+    document.getElementById("usuarioLogueado").innerHTML =
+    "👤 " +
+    usuarioActual.nombre +
+    " | " +
+    usuarioActual.rol;
 }
 
 async function cerrarSesion(){
