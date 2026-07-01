@@ -102,7 +102,7 @@ async function cargarPerfil(){
     " | " +
     usuarioActual.rol;
     
-    aplicarPermisos();
+   // aplicarPermisos();
 }
 
 async function cerrarSesion(){
