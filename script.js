@@ -2,6 +2,7 @@ let proximoNumeroOT = "";
 let contadorCliente = 1;
 let reparaciones = [];
 let clientes = [];
+let usuarioActual = null;
 
 function mostrarSeccion(id){
 
