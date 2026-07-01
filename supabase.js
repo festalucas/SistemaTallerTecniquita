@@ -101,6 +101,8 @@ async function cargarPerfil(){
     usuarioActual.nombre +
     " | " +
     usuarioActual.rol;
+    
+    aplicarPermisos();
 }
 
 async function cerrarSesion(){
