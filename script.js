@@ -134,11 +134,6 @@ console.log("INSERT DATA:", data);
 console.log("INSERT ERROR:", error);
 
 await cargarReparaciones();
-    
-    
-    reparaciones.push(orden);
-
-    guardarDatos();
 
     document.getElementById("resultadoOrden").innerHTML = `
         <h3>Orden Generada</h3>
@@ -149,11 +144,11 @@ await cargarReparaciones();
     `;
 
 
-    actualizarTablaReparaciones();
 
-    contadorOT++;
+proximoNumeroOT = await obtenerProximoNumeroOT();
 
-    actualizarNumeroOT();
+actualizarNumeroOT();
+
     document.getElementById("cliente").value = "";
 document.getElementById("telefono").value = "";
 document.getElementById("direccion").value = "";
