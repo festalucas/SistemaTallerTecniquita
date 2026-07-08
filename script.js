@@ -39,6 +39,9 @@ async function actualizarNumeroOT(){
 }
 async  function generarOrden(){
 
+
+        console.count("GENERAR ORDEN");
+
    let numero = proximoNumeroOT;
 
     let cliente = document.getElementById("cliente").value;
@@ -100,7 +103,7 @@ if(!clienteExistente){
     valorTransporte: 0
 };
 
-
+console.log("VOY A INSERTAR", numero);
 
 const { data, error } = await clienteSupabase
 .from("reparaciones")
