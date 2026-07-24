@@ -145,6 +145,7 @@ if(error){
 }
     
     await cargarDatos();
+    console.log("LLEGO AL MENSAJE");
 document.getElementById("resultadoOrden").innerHTML = `
 <div style="
 background:#d4edda;
