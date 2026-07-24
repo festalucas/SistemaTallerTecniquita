@@ -647,10 +647,14 @@ function infoCliente(id){
     let cliente =
         clientes.find(c => c.id == id);
 
-    let historial = reparaciones.filter(
-        r => r.cliente.toLowerCase() === cliente.nombre.toLowerCase()
+   let historial = reparaciones.filter(function(r){
+
+    return (
+        (r.cliente || "").toLowerCase() ===
+        cliente.nombre.toLowerCase()
     );
-   
+
+});
 
     let historialHTML = "";
 
