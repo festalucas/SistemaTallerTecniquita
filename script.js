@@ -136,15 +136,44 @@ const { data, error } = await clienteSupabase
 console.log("INSERT DATA:", data);
 console.log("INSERT ERROR:", error);
 
-await cargarReparaciones();
+if(error){
 
-    document.getElementById("resultadoOrden").innerHTML = `
-        <h3>Orden Generada</h3>
-        <p><strong>${numero}</strong></p>
-        <p>Cliente: ${cliente}</p>
-        <p>Producto: ${producto}</p>
-        <p>Estado: Ingresado</p>
-    `;
+    alert("Error al guardar la orden.");
+    console.error(error);
+    return;
+
+}
+    
+    await cargarDatos();
+document.getElementById("resultadoOrden").innerHTML = `
+<div style="
+background:#d4edda;
+color:#155724;
+border:1px solid #c3e6cb;
+border-radius:8px;
+padding:15px;
+margin-top:15px;
+font-weight:bold;
+">
+
+✅ Orden <strong>${numero}</strong> guardada correctamente.
+
+<br><br>
+
+Cliente: ${cliente}
+
+<br>
+
+Producto: ${producto}
+
+</div>
+`;
+
+setTimeout(() => {
+
+    document.getElementById("resultadoOrden").innerHTML = "";
+
+}, 4000);
 
 
 
