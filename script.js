@@ -359,7 +359,7 @@ function verDetalle(numeroOrden){
         <input
             type="number"
             id="valorReparacion"
-            value="${orden.valorReparacion || null}"
+       value="${orden.valorReparacion || ""}"
         >
 
         <label>Gastos / Repuestos</label>
@@ -367,7 +367,7 @@ function verDetalle(numeroOrden){
         <input
             type="number"
             id="gastos"
-            value="${orden.gastos || null}"
+            value="${orden.gastos || ""}"
         >
         
 
@@ -626,8 +626,7 @@ function buscarCliente(){
 }
 function seleccionarCliente(id){
 
-    let cliente =
-        clientes.find(c => c.id == id);
+    let cliente = clientes.find(c => c.id == id);
 
     document.getElementById("cliente").value =
         cliente.nombre;
@@ -646,6 +645,8 @@ function infoCliente(id){
 
     let cliente =
         clientes.find(c => c.id == id);
+    
+    console.log(cliente);
 
    let historial = reparaciones.filter(function(r){
 
